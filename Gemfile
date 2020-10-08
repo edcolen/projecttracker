@@ -32,7 +32,10 @@ gem 'autoprefixer-rails'
 gem 'cloudinary'
 gem 'dotenv-rails', groups: %i[development test]
 gem 'font-awesome-sass'
+
+# Authentication & authorization
 gem 'devise'
+gem 'pundit'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
