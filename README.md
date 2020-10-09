@@ -22,7 +22,7 @@ In order to fulfill my goals, this project needs to:
 - Have Software Requirement Specifications
 - Have a back-end built with Ruby on Rails
 - Use MVC (and another suitable design pattern)
-- Have unit tests
+- Use tests (TDD)
 - Be hosted in Heroku
 - Use Docker
 - Use PostgreSQL
