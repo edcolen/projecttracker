@@ -543,7 +543,11 @@
       <default>NULL</default>
       <relation table="users" row="id" />
     </row>
-    <row name="trigger" null="1" autoincrement="0">
+    <row name="notification_action" null="1" autoincrement="0">
+      <datatype>VARCHAR</datatype>
+      <default>NULL</default>
+    </row>
+    <row name="notification_target" null="1" autoincrement="0">
       <datatype>VARCHAR</datatype>
       <default>NULL</default>
     </row>
