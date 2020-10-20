@@ -1,0 +1,2 @@
+class SectionTeaming < ApplicationRecord
+end
