@@ -42,7 +42,7 @@
       <type label="Geometry" length="0" sql="GEOMETRY" quote="'"/>
     </group>
   </datatypes>
-  <table x="196" y="419" name="users">
+  <table x="150" y="302" name="users">
     <row name="id" null="1" autoincrement="1">
       <datatype>INTEGER</datatype>
       <default>NULL</default>
@@ -189,7 +189,7 @@
       <part>id</part>
     </key>
   </table>
-  <table x="828" y="122" name="sections">
+  <table x="848" y="108" name="sections">
     <row name="id" null="1" autoincrement="1">
       <datatype>INTEGER</datatype>
       <default>NULL</default>
@@ -448,7 +448,7 @@
       <part>id</part>
     </key>
   </table>
-  <table x="382" y="595" name="comments">
+  <table x="373" y="611" name="comments">
     <row name="id" null="1" autoincrement="1">
       <datatype>INTEGER</datatype>
       <default>NULL</default>
@@ -547,7 +547,7 @@
       <part>id</part>
     </key>
   </table>
-  <table x="18" y="473" name="notifications">
+  <table x="5" y="57" name="notifications">
     <row name="id" null="1" autoincrement="1">
       <datatype>INTEGER</datatype>
       <default>NULL</default>
@@ -564,6 +564,33 @@
     <row name="notification_target" null="1" autoincrement="0">
       <datatype>VARCHAR</datatype>
       <default>NULL</default>
+    </row>
+    <row name="created_at" null="1" autoincrement="0">
+      <datatype>TIMESTAMP</datatype>
+      <default>NULL</default>
+    </row>
+    <row name="updated_at" null="1" autoincrement="0">
+      <datatype>TIMESTAMP</datatype>
+      <default>NULL</default>
+    </row>
+    <key type="PRIMARY" name="">
+      <part>id</part>
+    </key>
+  </table>
+  <table x="155" y="596" name="responses">
+    <row name="id" null="1" autoincrement="1">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default>
+    </row>
+    <row name="user_id" null="1" autoincrement="0">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default>
+      <relation table="users" row="id" />
+    </row>
+    <row name="comment_id" null="1" autoincrement="0">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default>
+      <relation table="comments" row="id" />
     </row>
     <row name="created_at" null="1" autoincrement="0">
       <datatype>TIMESTAMP</datatype>
