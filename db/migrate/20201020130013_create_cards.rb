@@ -6,7 +6,7 @@ class CreateCards < ActiveRecord::Migration[6.0]
       t.references :leader, foreign_key: { to_table: 'users' }
       t.references :color, foreign_key: true
       t.string :title, null: false
-      t.string :description
+      t.text :description
       t.string :priority
       t.string :status
       t.string :category
