@@ -32,6 +32,7 @@ gem 'autoprefixer-rails'
 gem 'cloudinary'
 gem 'dotenv-rails', groups: %i[development test]
 gem 'font-awesome-sass'
+gem 'rubocop', require: false
 
 # Authentication & authorization
 gem 'devise'
