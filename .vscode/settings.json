@@ -3,6 +3,7 @@
     "authenticatable",
     "hexcode",
     "omniauthable",
+    "taggings",
     "timeoutable",
     "validatable"
   ]
