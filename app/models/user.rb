@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -5,6 +7,28 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   after_create :set_default_avatar
+
+  # Relations
+  has_many :privileges
+  has_many :admin_privileges, class_name: 'Privilege', foreign_key: 'admin_id'
+
+  has_many :projects
+  has_many :project_memberships, class_name: 'Collaboration', foreign_key: 'member_id'
+
+  has_many :sections
+  has_many :section_taggings
+  has_many :section_memberships, class_name: 'SectionTeaming', foreign_key: 'member_id'
+  has_many :section_leaderships, class_name: 'Section', foreign_key: 'leader_id'
+
+  has_many :cards
+  has_many :card_taggings
+  has_many :card_memberships, class_name: 'CardTeaming', foreign_key: 'member_id'
+  has_many :card_leaderships, class_name: 'Section', foreign_key: 'leader_id'
+
+  has_many :comments
+  has_many :notifications
+
+  has_one_attached :photo
 
   # Validations
   validates :first_name, :last_name, :username, :email, presence: true
