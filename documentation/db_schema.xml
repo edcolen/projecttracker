@@ -121,7 +121,7 @@
       <part>id</part>
     </key>
   </table>
-  <table x="266" y="55" name="privileges">
+  <table x="289" y="53" name="privileges">
     <row name="id" null="1" autoincrement="1">
       <datatype>INTEGER</datatype>
       <default>NULL</default>
@@ -131,14 +131,15 @@
       <default>NULL</default>
       <relation table="users" row="id" />
     </row>
+    <row name="admin_id" null="1" autoincrement="0">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default>
+      <relation table="users" row="id" />
+    </row>
     <row name="project_id" null="1" autoincrement="0">
       <datatype>INTEGER</datatype>
       <default>NULL</default>
       <relation table="projects" row="id" />
-    </row>
-    <row name="admin" null="1" autoincrement="0">
-      <datatype>BOOLEAN</datatype>
-      <default>NULL</default>
     </row>
     <row name="created_at" null="1" autoincrement="0">
       <datatype>TIMESTAMP</datatype>
@@ -152,7 +153,7 @@
       <part>id</part>
     </key>
   </table>
-  <table x="349" y="228" name="collaborations">
+  <table x="426" y="285" name="collaborations">
     <row name="id" null="1" autoincrement="1">
       <datatype>INTEGER</datatype>
       <default>NULL</default>
@@ -162,14 +163,15 @@
       <default>NULL</default>
       <relation table="users" row="id" />
     </row>
+    <row name="member_id" null="1" autoincrement="0">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default>
+      <relation table="users" row="id" />
+    </row>
     <row name="project_id" null="1" autoincrement="0">
       <datatype>INTEGER</datatype>
       <default>NULL</default>
       <relation table="projects" row="id" />
-    </row>
-    <row name="member" null="1" autoincrement="0">
-      <datatype>BOOLEAN</datatype>
-      <default>NULL</default>
     </row>
     <row name="role" null="1" autoincrement="0">
       <datatype>VARCHAR</datatype>
@@ -192,15 +194,15 @@
       <datatype>INTEGER</datatype>
       <default>NULL</default>
     </row>
-    <row name="project_id" null="1" autoincrement="0">
-      <datatype>INTEGER</datatype>
-      <default>NULL</default>
-      <relation table="projects" row="id" />
-    </row>
     <row name="user_id" null="1" autoincrement="0">
       <datatype>INTEGER</datatype>
       <default>NULL</default>
       <relation table="users" row="id" />
+    </row>
+    <row name="project_id" null="1" autoincrement="0">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default>
+      <relation table="projects" row="id" />
     </row>
     <row name="leader_id" null="1" autoincrement="0">
       <datatype>INTEGER</datatype>
@@ -291,6 +293,11 @@
       <datatype>INTEGER</datatype>
       <default>NULL</default>
     </row>
+    <row name="user_id" null="1" autoincrement="0">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default>
+      <relation table="users" row="id" />
+    </row>
     <row name="section_id" null="1" autoincrement="0">
       <datatype>INTEGER</datatype>
       <default>NULL</default>
@@ -313,10 +320,15 @@
       <part>id</part>
     </key>
   </table>
-  <table x="1143" y="497" name="card_taggings">
+  <table x="1161" y="473" name="card_taggings">
     <row name="id" null="1" autoincrement="1">
       <datatype>INTEGER</datatype>
       <default>NULL</default>
+    </row>
+    <row name="user_id" null="1" autoincrement="0">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default>
+      <relation table="users" row="id" />
     </row>
     <row name="card_id" null="1" autoincrement="0">
       <datatype>INTEGER</datatype>
@@ -471,12 +483,17 @@
       <part>id</part>
     </key>
   </table>
-  <table x="577" y="39" name="section_teamings">
+  <table x="542" y="45" name="section_teamings">
     <row name="id" null="1" autoincrement="1">
       <datatype>INTEGER</datatype>
       <default>NULL</default>
     </row>
     <row name="user_id" null="1" autoincrement="0">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default>
+      <relation table="users" row="id" />
+    </row>
+    <row name="member_id" null="1" autoincrement="0">
       <datatype>INTEGER</datatype>
       <default>NULL</default>
       <relation table="users" row="id" />
@@ -486,10 +503,6 @@
       <default>NULL</default>
       <relation table="sections" row="id" />
     </row>
-    <row name="member" null="1" autoincrement="0">
-      <datatype>BOOLEAN</datatype>
-      <default>NULL</default>
-    </row>
     <row name="created_at" null="1" autoincrement="0">
       <datatype>TIMESTAMP</datatype>
       <default>NULL</default>
@@ -502,7 +515,7 @@
       <part>id</part>
     </key>
   </table>
-  <table x="612" y="549" name="card_teamings">
+  <table x="604" y="544" name="card_teamings">
     <row name="id" null="1" autoincrement="1">
       <datatype>INTEGER</datatype>
       <default>NULL</default>
@@ -512,14 +525,15 @@
       <default>NULL</default>
       <relation table="users" row="id" />
     </row>
+    <row name="member_id" null="1" autoincrement="0">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default>
+      <relation table="users" row="id" />
+    </row>
     <row name="card_id" null="1" autoincrement="0">
       <datatype>INTEGER</datatype>
       <default>NULL</default>
       <relation table="cards" row="id" />
-    </row>
-    <row name="member" null="1" autoincrement="0">
-      <datatype>BOOLEAN</datatype>
-      <default>NULL</default>
     </row>
     <row name="created_at" null="1" autoincrement="0">
       <datatype>TIMESTAMP</datatype>
@@ -533,7 +547,7 @@
       <part>id</part>
     </key>
   </table>
-  <table x="26" y="557" name="notifications">
+  <table x="18" y="473" name="notifications">
     <row name="id" null="1" autoincrement="1">
       <datatype>INTEGER</datatype>
       <default>NULL</default>
