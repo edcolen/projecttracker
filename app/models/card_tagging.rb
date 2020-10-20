@@ -1,0 +1,2 @@
+class CardTagging < ApplicationRecord
+end
