@@ -577,7 +577,7 @@
       <part>id</part>
     </key>
   </table>
-  <table x="155" y="596" name="responses">
+  <table x="162" y="603" name="responses">
     <row name="id" null="1" autoincrement="1">
       <datatype>INTEGER</datatype>
       <default>NULL</default>
@@ -591,6 +591,10 @@
       <datatype>INTEGER</datatype>
       <default>NULL</default>
       <relation table="comments" row="id" />
+    </row>
+    <row name="content" null="1" autoincrement="0">
+      <datatype>TEXT</datatype>
+      <default>NULL</default>
     </row>
     <row name="created_at" null="1" autoincrement="0">
       <datatype>TIMESTAMP</datatype>

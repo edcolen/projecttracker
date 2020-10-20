@@ -148,8 +148,13 @@ ActiveRecord::Schema.define(version: 2020_10_20_225755) do
   end
 
   create_table "responses", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "comment_id"
+    t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["comment_id"], name: "index_responses_on_comment_id"
+    t.index ["user_id"], name: "index_responses_on_user_id"
   end
 
   create_table "section_taggings", force: :cascade do |t|
@@ -235,6 +240,8 @@ ActiveRecord::Schema.define(version: 2020_10_20_225755) do
   add_foreign_key "privileges", "users"
   add_foreign_key "privileges", "users", column: "admin_id"
   add_foreign_key "projects", "users"
+  add_foreign_key "responses", "comments"
+  add_foreign_key "responses", "users"
   add_foreign_key "section_taggings", "sections"
   add_foreign_key "section_taggings", "tags"
   add_foreign_key "section_taggings", "users"
