@@ -1,0 +1,2 @@
+class CardTeaming < ApplicationRecord
+end
