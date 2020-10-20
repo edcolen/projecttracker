@@ -67,10 +67,6 @@
       <datatype>VARCHAR</datatype>
       <default>NULL</default>
     </row>
-    <row name="role" null="1" autoincrement="0">
-      <datatype>VARCHAR</datatype>
-      <default>NULL</default>
-    </row>
     <row name="photo" null="1" autoincrement="0">
       <datatype>BYTEA</datatype>
       <default>NULL</default>
@@ -173,6 +169,10 @@
     </row>
     <row name="member" null="1" autoincrement="0">
       <datatype>BOOLEAN</datatype>
+      <default>NULL</default>
+    </row>
+    <row name="role" null="1" autoincrement="0">
+      <datatype>VARCHAR</datatype>
       <default>NULL</default>
     </row>
     <row name="created_at" null="1" autoincrement="0">
