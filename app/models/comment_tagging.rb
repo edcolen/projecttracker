@@ -1,0 +1,2 @@
+class CommentTagging < ApplicationRecord
+end
