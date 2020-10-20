@@ -7,11 +7,11 @@ class CreateCards < ActiveRecord::Migration[6.0]
       t.references :color, foreign_key: true
       t.string :title, null: false
       t.text :description
+      t.datetime :start_date
+      t.datetime :end_date
       t.string :priority
       t.string :status
       t.string :category
-      t.datetime :start_date
-      t.datetime :end_date
       t.timestamps
     end
   end
