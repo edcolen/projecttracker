@@ -10,7 +10,7 @@ class CreateCards < ActiveRecord::Migration[6.0]
       t.datetime :start_date
       t.datetime :end_date
       t.string :priority
-      t.string :status
+      t.string :status, default: 'new'
       t.string :category
       t.timestamps
     end

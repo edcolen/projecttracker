@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2020_10_20_225755) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.string "priority"
-    t.string "status"
+    t.string "status", default: "new"
     t.string "category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
