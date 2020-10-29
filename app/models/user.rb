@@ -34,7 +34,7 @@ class User < ApplicationRecord
   # Validations
   validates :first_name, :last_name, :username, :email, presence: true
   validates :username, :email, uniqueness: true
-  validates :email, confirmation: true
+  # validates :email, confirmation: true
 
   validates :first_name, :last_name,
             format: { with: /[A-Za-z]+/,
