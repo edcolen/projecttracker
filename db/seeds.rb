@@ -4,21 +4,18 @@ require 'date'
 
 puts 'Creating main user...'
 sleep(1)
-
 main_user = User.create!(first_name: 'Ed',
                          last_name: 'Colen',
                          username: 'edcolen',
                          email: 'ed.colen@gmail.com',
                          password: '123456')
-
+puts "#{main_user.username} created"
 # avatar_url = "https://api.adorable.io/avatars/285/#{main_user.id}projecttracker.png"
 # avatar = URI.open(avatar_url)
 # main_user.photo.attach(io: avatar, filename: "#{main_user.username}.png", content_type: 'image/png')
-puts "#{main_user.username} created"
 
 puts 'Creating other users...'
 sleep(1)
-
 10.times do
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
@@ -30,16 +27,14 @@ sleep(1)
                       username: username,
                       email: email,
                       password: password)
-
+  puts "#{user.username} created"
   # avatar_url = "https://api.adorable.io/avatars/285/#{user.id}projecttracker.png"
   # avatar = URI.open(avatar_url)
   # user.photo.attach(io: avatar, filename: "#{user.username}.png", content_type: 'image/png')
-  puts "#{user.username} created"
 end
 
 puts 'Creating colors...'
 sleep(1)
-
 color_counter = 0
 5.times do
   color_names = %w[red green blue pink gray]
@@ -51,7 +46,6 @@ end
 
 puts 'Creating tags...'
 sleep(1)
-
 15.times do
   tag_name = Faker::Lorem.word
   tag = Tag.create!(name: tag_name)
@@ -60,7 +54,6 @@ end
 
 puts 'Creating projects...'
 sleep(1)
-
 3.times do
   project_user_id = User.all.sample.id
   project_title = Faker::TvShows::Seinfeld.quote
@@ -80,7 +73,6 @@ sleep(1)
 
 puts 'Creating collaborations...'
 sleep(1)
-
 project_id = Project.all.sample.id
 user_id = project_id.user.id
 member_id = User.all.sample.id
