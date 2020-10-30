@@ -75,13 +75,16 @@ sleep(1)
   puts "Project #{project.title} created"
 end
 
+puts 'Creating privileges...'
+sleep(1)
+
 puts 'Creating collaborations...'
 sleep(1)
 
 project_id = Project.all.sample.id
 user_id = project_id.user.id
 member_id = User.all.sample.id
-role = %w[admin developer designer developer designer].sample
+role = %w[developer designer UX].sample
 
 collaboration = Collaboration.create!(user_id: user_id,
                                       member_id: member_id,
