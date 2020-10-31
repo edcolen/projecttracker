@@ -1,6 +1,7 @@
 class Card < ApplicationRecord
   belongs_to :user
   belongs_to :section
+  belongs_to :project, through: :sections
   belongs_to :leader, class_name: 'User'
   belongs_to :color
 
