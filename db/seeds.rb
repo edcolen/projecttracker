@@ -108,20 +108,40 @@ end
 puts 'Creating collaborations for main project...'
 sleep(1)
 User.all.each do |user|
-  project_id = Project.all.sample.id
-  user_id = User.first.id
-  member_id = user.id
-  role = %w[developer designer UX].sample
+  collaboration_project_id = Project.all.sample.id
+  collaboration_user_id = User.first.id
+  collaboration_member_id = user.id
+  collaboration_role = %w[developer designer UX].sample
 
-  collaboration = Collaboration.create!(user_id: user_id,
-                                        member_id: member_id,
-                                        project_id: project_id,
-                                        role: role)
-  puts "Assigned #{collaboration.member.username} to project: '#{collaboration.project.title}'"
+  collaboration = Collaboration.create!(user_id: collaboration_user_id,
+                                        member_id: collaboration_member_id,
+                                        project_id: collaboration_project_id,
+                                        role: collaboration_role)
+  puts "Assigned #{collaboration.member.username} as a #{collaboration.role} to project: '#{collaboration.project.title}'"
 end
 
 puts 'Creating project sections...'
 sleep(1)
+4.times do
+  section_user_id = Project.first.privileges.sample.user.id
+  section_project_id = Project.first.id
+  section_color_id = Color.all.sample.id
+  section_leader_id = User.all.sample.id
+  section_title = Faker::Book.title
+  section_description = Faker::Quote.famous_last_words
+  section_start_date = Date.today.prev_day(rand(8..20))
+  section_end_date = Date.today.next_day(rand(20..45))
+
+  section = Section.create!(section_user_id: section_user_id,
+                            section_project_id: section_project_id,
+                            section_color_id: section_color_id,
+                            section_leader_id: section_leader_id,
+                            section_title: section_title,
+                            section_description: section_description,
+                            section_start_date: section_start_date,
+                            section_end_date: section_end_date)
+  puts "Section #{section.title} created"
+end
 
 puts 'Creating cards...'
 sleep(1)
