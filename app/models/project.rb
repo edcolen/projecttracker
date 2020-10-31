@@ -5,6 +5,7 @@ class Project < ApplicationRecord
   has_many :cards, through: :sections
   has_many :tags, through: :section_taggings
   has_many :collaborations
+  has_many :privileges
 
   # Validations
   validates :title, presence: true
