@@ -5,6 +5,7 @@
     "hexcodes",
     "omniauthable",
     "taggings",
+    "teamings",
     "timeoutable",
     "validatable"
   ]
