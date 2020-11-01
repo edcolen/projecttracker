@@ -23,7 +23,7 @@ class User < ApplicationRecord
   has_many :cards
   has_many :card_taggings
   has_many :card_memberships, class_name: 'CardTeaming', foreign_key: 'member_id'
-  has_many :card_leaderships, class_name: 'Section', foreign_key: 'leader_id'
+  has_many :card_leaderships, class_name: 'Card', foreign_key: 'leader_id'
 
   has_many :comments
   has_many :notifications
