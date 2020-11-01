@@ -5,10 +5,11 @@ class Section < ApplicationRecord
   belongs_to :color
 
   has_many :cards
-  has_many :section_taggings
-  has_many :section_teamings
   has_many :members, through: :section_teamings
   has_many :tags, through: :section_taggings
+
+  has_many :section_taggings
+  has_many :section_teamings
 
   # Validations
   validates :title, presence: true
