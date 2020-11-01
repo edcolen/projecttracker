@@ -227,7 +227,6 @@ ActiveRecord::Schema.define(version: 2020_10_20_225755) do
   add_foreign_key "cards", "colors"
   add_foreign_key "cards", "sections"
   add_foreign_key "cards", "users"
-  add_foreign_key "cards", "users", column: "leader_id"
   add_foreign_key "collaborations", "projects"
   add_foreign_key "collaborations", "users"
   add_foreign_key "collaborations", "users", column: "member_id"

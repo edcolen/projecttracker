@@ -293,11 +293,11 @@ Card.all.each do |card|
   end
 end
 
-puts 'Creating mains project comments...'
+sectionputs 'Creating main project comments...'
 sleep(1)
 
 Card.all.each do |card|
-  rand(1..4) do
+  rand(1..4).times do
     comment_user_id = card.members.sample.id
     comment_card_id = card.id
     comment_content = Faker::Quote.famous_last_words
@@ -310,8 +310,42 @@ Card.all.each do |card|
     puts "#{comment.user.username} commented on #{comment.card.title}"
   end
 end
+puts "#{Comment.count} comments created"
+
+puts 'Creating comments taggings...'
+sleep(1)
+
+Comment.all.each do |comment|
+  comment_tags = Tag.all.sample(5)
+  rand(1..4).times do
+    comment_tag_tag_id = comment_tags.sample.id
+    comment_tag_comment_id = comment.id
+
+    CommentTagging.create!(
+      tag_id: comment_tag_tag_id,
+      comment_id: comment_tag_comment_id
+    )
+  end
+end
+puts "#{CommentTagging.count} comments were tagged"
 
 puts 'Creating responses...'
 sleep(1)
 
-puts 'Seed successfully created!!!!'
+Comment.all.each do |comment|
+  rand(1..4).times do
+    response_user_id = comment.card.section.members.sample.id
+    response_comment_id = comment.id
+    response_content = Faker::ChuckNorris.fact
+
+    Response.create!(
+      user_id: response_user_id,
+      comment_id: response_comment_id,
+      content: response_content
+    )
+  end
+end
+puts "#{Response.count} responses were created"
+sleep(1)
+
+puts 'Seed successfully done!!!!'
