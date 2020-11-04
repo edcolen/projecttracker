@@ -293,7 +293,7 @@ Card.all.each do |card|
   end
 end
 
-sectionputs 'Creating main project comments...'
+puts 'Creating main project comments...'
 sleep(1)
 
 Card.all.each do |card|
