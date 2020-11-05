@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'pages#dashboard', as: 'dashboard'
 
   devise_for :users
+
+  resources :projects, shallow: true
 end
