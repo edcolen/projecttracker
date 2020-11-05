@@ -6,6 +6,8 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @projects = current_user.projects
+    @projects = []
+    Collaboration.where(member_id: current_user.id)
+                 .each { |collaboration| @projects << collaboration.project }
   end
 end
