@@ -6,6 +6,6 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @project = Project.first
+    @projects = current_user.projects
   end
 end
