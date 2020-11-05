@@ -1,2 +1,6 @@
 <h1>Dashboard</h1>
-<p>Project: <%= @project.title %></p>
+<h3>Projects</h3>
+<% @projects.each do |project| %>
+  <h4>Project: <%= link_to project.title, project_path(project) %></h4>
+  <p><%= "Members: #{project.members.count} | Sections: #{project.sections.count} | Cards: #{project.cards.count}" %></p>
+<% end%>
