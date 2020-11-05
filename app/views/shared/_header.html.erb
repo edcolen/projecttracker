@@ -1,0 +1,16 @@
+<% if current_user %>
+  <p><%= "Logged as #{current_user.first_name}" %></p>
+  <!---------- Log out ---------->
+  <%= link_to destroy_user_session_path, method: :delete do %>
+    <i class="fas fa-sign-out-alt"></i> Logout
+  <% end %>
+<% else %>
+  <!---------- Login ---------->
+  <%= link_to new_user_session_path, class: "btn-login colors" do %>
+    <span class="px-5 mx-5"><i class="far fa-user"></i> Sign in</span>
+  <% end %>
+  <!---------- Sign Up ---------->
+  <%= link_to new_user_registration_path, class: "btn-login colors" do %>
+    <span class="px-5 mx-5"><i class="fas fa-user-plus"></i></i> Sign up</span>
+<% end %>
+<% end %>
