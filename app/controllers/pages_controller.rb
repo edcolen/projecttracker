@@ -7,9 +7,8 @@ class PagesController < ApplicationController
 
   def dashboard
     @projects = []
-    Collaboration.where(member_id: current_user.id)
-                 .each { |collaboration| @projects << collaboration.project }
+    current_user.project_memberships.each do |membership|
+      @projects << membership.project
+    end
   end
 end
-
-# Privilege.where(admin_id: User.first.id).select{|k, v| k[:project_id] == Project.first.id }
