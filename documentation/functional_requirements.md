@@ -107,22 +107,6 @@ Use
 
 <br />
 
-## Updates
-
-Requirements
-
-- An update must have: content, tags (optional), card_id, user_id, attachments (optional)
-
-Use
-
-- Ability to create a new update on a card
-- Ability to delete an update (as admin/section leader/card leader/creator)
-- Ability to edit an update (as admin/section leader/card leader/as creator)
-- Ability to attach images to an update (as admin/section leader/card leader/as creator)
-- Ability to tag another project member
-
-<br />
-
 ## Comments
 
 Requirements
@@ -138,6 +122,22 @@ Use
 - Ability to tag another project member
 
 <br />
+
+## Responses
+
+Requirements
+
+- A response must have: content, comment_id, user_id
+
+Use
+
+- Ability to create a new response on a comment
+- Ability to delete a response (as admin/section leader/card leader/creator)
+- Ability to edit a response (as admin/section leader/card leader/as creator)
+- Ability to tag another project member in the response (as creator)
+
+<br />
+
 
 ## Notifications
 
