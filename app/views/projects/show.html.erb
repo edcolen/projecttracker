@@ -1,17 +1,23 @@
 <p><%= link_to "back to dashboard", dashboard_path %></p>
+
 <h1><%= @project.title %></h1>
 <p><%= @project.description %></p>
+
 <% @project.sections.each do |section| %>
   <br>
   <hr>
+
   <h4 style="color: <%= section.color.name %>;"><strong><%= section.title %></strong></h4>
   <p>Members:</p>
   <% section.members.each do |member| %>
     <span><%= member.username %></span>
   <% end %>
+
   <p>Cards:</p>
   <hr>
+
   <% section.cards.each do |card| %>
+
     <hr>
     <p><strong><%= "#{card.title} (#{card.category}) (#{card.start_date.strftime("%m/%d")} - #{card.end_date.strftime("%m/%d")})" %></strong></p>
     <p><%= "Leader: #{card.leader.username} | Status: #{card.status} | Priority: #{card.priority}" %></p>
