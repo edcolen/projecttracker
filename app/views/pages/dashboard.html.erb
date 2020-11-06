@@ -1,7 +1,15 @@
 <h1>Dashboard</h1>
-<%= link_to "New project", new_project_path %>
+<%= link_to new_project_path do %>
+  <span><i class="fas fa-plus"></i> New project</span>
+<% end %>
 <h3>Projects</h3>
 <% @projects.each do |project| %>
   <h4>Project: <%= link_to project.title, project_path(project) %></h4>
+  <%= link_to edit_project_path(project) do %>
+    <span><i class="fas fa-edit"></i> Edit project</span>
+  <% end %>
+  <%= link_to project_path(project), method: :delete, data: { confirm: 'Are you sure?' } do %>
+    <p> <i class="far fa-trash-alt"></i> Delete project</p>
+  <% end %>
   <p><%= "Members: #{project.members.count} | Sections: #{project.sections.count} | Cards: #{project.cards.count}" %></p>
 <% end%>

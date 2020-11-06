@@ -11,3 +11,5 @@ class PagesController < ApplicationController
                  .each { |collaboration| @projects << collaboration.project }
   end
 end
+
+# Privilege.where(admin_id: User.first.id).select{|k, v| k[:project_id] == Project.first.id }

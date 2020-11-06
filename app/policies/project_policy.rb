@@ -16,4 +16,13 @@ class ProjectPolicy < ApplicationPolicy
   def create?
     user
   end
+
+  def destroy?
+    privilege_check
+  end
+
+  def privilege_check
+    privilege = Privilege.where(admin_id: user.id, project_id: record.id)
+    privilege.empty? ? false : true
+  end
 end
