@@ -69,7 +69,7 @@ sleep(1)
 
 project_user_id = User.first.id
 project_title = Faker::TvShows::Seinfeld.quote
-project_description = Faker::Quote.famous_last_words
+project_description = Faker::ChuckNorris.fact
 project_start_date = Date.today.prev_day(rand(8..20))
 project_end_date = Date.today.next_day(rand(20..45))
 project = Project.create!(
