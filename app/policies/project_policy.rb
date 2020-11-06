@@ -8,4 +8,8 @@ class ProjectPolicy < ApplicationPolicy
   def show?
     record.members.include?(user)
   end
+
+  def new?
+    user
+  end
 end

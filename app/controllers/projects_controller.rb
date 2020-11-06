@@ -5,7 +5,27 @@ class ProjectsController < ApplicationController
     authorize @project
   end
 
+  def new
+    @project = Project.new
+    authorize @project
+  end
+
+  def create
+    @project = Project.new(project_params)
+    @project.user = current_user
+    authorize @project
+    if @project.save
+      redirect_to @project, notice: 'Project successfully created.'
+    else
+      render :new
+    end
+  end
+
   private
+
+  def project_params
+    params.require(:project).permit(:name, :address, :photo)
+  end
 
   def set_project
     @project = Project.find_by(id: params[:id])

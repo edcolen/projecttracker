@@ -1,0 +1,8 @@
+<h2>New Project</h2>
+<%= form_with model: @project, url: new_project_path do |f| %>
+  <%= f.text_field :title %>
+  <%= f.text_area :description %>
+  <%= f.date_select :start_date %>
+  <%= f.date_select :end_date %>
+  <%= f.submit "Create project" %>
+<% end %>
