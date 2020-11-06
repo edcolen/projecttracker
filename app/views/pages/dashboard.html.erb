@@ -9,12 +9,16 @@
 <% @projects.each do |project| %>
   <h4>Project: <%= link_to project.title, project_path(project) %></h4>
 
-  <%= link_to edit_project_path(project) do %>
-    <span><i class="fas fa-edit"></i> Edit project</span>
+  <% if policy(project).edit? %>
+    <%= link_to edit_project_path(project) do %>
+      <span><i class="fas fa-edit"></i> Edit project</span>
+    <% end %>
   <% end %>
 
-  <%= link_to project_path(project), method: :delete, data: { confirm: 'Are you sure?' } do %>
-    <span> <i class="far fa-trash-alt"></i> Delete project</span>
+  <% if policy(project).edit? %>
+    <%= link_to project_path(project), method: :delete, data: { confirm: 'Are you sure?' } do %>
+      <span> <i class="far fa-trash-alt"></i> Delete project</span>
+    <% end %>
   <% end %>
 
   <p><%= "Members: #{project.members.count} | Sections: #{project.sections.count} | Cards: #{project.cards.count}" %></p>
