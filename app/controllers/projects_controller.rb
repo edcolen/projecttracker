@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: %i[show destroy]
+  before_action :set_project, only: %i[show edit update destroy]
 
   def show
     authorize @project
@@ -23,6 +23,19 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def edit
+    authorize @project
+  end
+
+  def update
+    authorize @project
+    if @project.update(project_params)
+      redirect_to @project, notice: 'Project successfully edited.'
+    else
+      render :edit
+    end
+  end
+
   def destroy
     authorize @project
     @project.destroy
@@ -39,9 +52,4 @@ class ProjectsController < ApplicationController
     @project = Project.find_by(id: params[:id])
     redirect_to dashboard_path, notice: 'Project not found.' if @project.nil?
   end
-
-  # def privilege_check
-  #   privilege = Privilege.where(admin_id: current_user.id, project_id: @project.id)
-  #   redirect_to dashboard_path, notice: 'You are not authorized to perform this action.' unless privilege.empty?
-  # end
 end

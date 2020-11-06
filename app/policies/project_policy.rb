@@ -17,6 +17,14 @@ class ProjectPolicy < ApplicationPolicy
     user
   end
 
+  def edit?
+    privilege_check
+  end
+
+  def update?
+    privilege_check
+  end
+
   def destroy?
     privilege_check
   end
