@@ -8,6 +8,7 @@
 
 <% @projects.each do |project| %>
   <h4>Project: <%= link_to project.title, project_path(project) %></h4>
+  <p><%= project.description %></p>
 
   <% if policy(project).edit? %>
     <%= link_to edit_project_path(project) do %>
