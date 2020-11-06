@@ -9,7 +9,7 @@
     <span><i class="fas fa-edit"></i> Edit project</span>
   <% end %>
   <%= link_to project_path(project), method: :delete, data: { confirm: 'Are you sure?' } do %>
-    <p> <i class="far fa-trash-alt"></i> Delete project</p>
+    <span> <i class="far fa-trash-alt"></i> Delete project</span>
   <% end %>
   <p><%= "Members: #{project.members.count} | Sections: #{project.sections.count} | Cards: #{project.cards.count}" %></p>
 <% end%>
