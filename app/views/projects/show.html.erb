@@ -11,22 +11,14 @@
   <br>
   <hr>
 
-  <h4 style="color: <%= section.color.name %>;"><strong><%= section.title %></strong></h4>
+  <h4 style="color: <%= section.color.name %>;"><strong><%= link_to section.title, section_path(section) %></strong></h4>
+  <p><%= section.description %></p>
   <p><%= "Leader: #{section.leader.username}" if section.leader %></p>
 
   <p>Members: <% section.members.each do |member| %>
       <%= member.username %>
     <% end %></p>
 
-  <p>Cards:</p>
+  <p>Cards: <%= section.cards.count %></p>
   <hr>
-
-  <% section.cards.each do |card| %>
-
-    <hr>
-    <p><strong><%= "#{card.title} (#{card.category}) (#{card.start_date.strftime("%m/%d")} - #{card.end_date.strftime("%m/%d")})" %></strong></p>
-    <p><%= "Leader: #{card.leader.username} | Status: #{card.status} | Priority: #{card.priority}" %></p>
-    <p><%= "#{card.description} " %></p>
-    <hr>
-  <% end%>
 <% end %>

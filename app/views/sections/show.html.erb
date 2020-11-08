@@ -1,1 +1,28 @@
-<p><%= link_to "back to dashboard", project_path(params[:project_id]) %></p>
+<p><%= link_to "back to project", project_path(Section.find(params[:id]).project) %></p>
+
+<%= link_to new_section_card_path(@section) do %>
+  <span><i class="fas fa-plus"></i> New card</span>
+<% end %>
+
+<% if policy(@section).destroy? %>
+  <%= link_to section_path(@section), method: :delete, data: { confirm: 'Are you sure?' } do %>
+    <span> <i class="far fa-trash-alt"></i> Delete section</span>
+  <% end %>
+<% end %>
+
+<h1><%= @section.title %></h1>
+<p><%= @section.description %></p>
+
+<% @section.cards.each do |card| %>
+  <br>
+  <hr>
+
+  <h4 style="color: <%= card.color.name %>;"><strong><%= link_to card.title, card_path(card) %></strong></h4>
+  <p><%= card.description %></p>
+  <p><%= "Leader: #{card.leader.username}" if card.leader %></p>
+
+  <p>Members: <% card.members.each do |member| %>
+      <%= member.username %>
+    <% end %></p>
+  <hr>
+<% end %>

@@ -1,9 +1,9 @@
 class SectionsController < ApplicationController
   before_action :set_section, only: %i[show edit update destroy]
 
-  # def show
-  #   authorize @section
-  # end
+  def show
+    authorize @section
+  end
 
   def new
     @section = Section.new
@@ -39,12 +39,12 @@ class SectionsController < ApplicationController
   #   end
   # end
 
-  # def destroy
-  #   authorize @section
-  #   project = @section.project
-  #   @section.destroy
-  #   redirect_to project_path(project), notice: 'Section was deleted.'
-  # end
+  def destroy
+    authorize @section
+    project = @section.project
+    @section.destroy
+    redirect_to project_path(project), notice: 'Section was deleted.'
+  end
 
   private
 
