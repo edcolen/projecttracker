@@ -1,0 +1,2 @@
+module SectionTeamingsHelper
+end
