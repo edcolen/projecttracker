@@ -26,18 +26,18 @@ class SectionsController < ApplicationController
     end
   end
 
-  # def edit
-  #   authorize @section
-  # end
+  def edit
+    authorize @section
+  end
 
-  # def update
-  #   authorize @section
-  #   if @section.update(section_params)
-  #     redirect_to @section, notice: 'Section successfully edited.'
-  #   else
-  #     render :edit
-  #   end
-  # end
+  def update
+    authorize @section
+    if @section.update(section_params)
+      redirect_to @section, notice: 'Section successfully edited.'
+    else
+      render :edit
+    end
+  end
 
   def destroy
     authorize @section

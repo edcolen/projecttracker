@@ -4,13 +4,19 @@
   <span><i class="fas fa-plus"></i> New card</span>
 <% end %>
 
+<% if policy(@section).edit? %>
+  <%= link_to edit_section_path(@section) do %>
+    <span><i class="fas fa-edit"></i> Edit section</span>
+  <% end %>
+<% end %>
+
 <% if policy(@section).destroy? %>
   <%= link_to section_path(@section), method: :delete, data: { confirm: 'Are you sure?' } do %>
     <span> <i class="far fa-trash-alt"></i> Delete section</span>
   <% end %>
 <% end %>
 
-<h1><%= @section.title %></h1>
+<h1>Section: <%= @section.title %></h1>
 <p><%= @section.description %></p>
 
 <% @section.cards.each do |card| %>

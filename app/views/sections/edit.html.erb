@@ -1,0 +1,25 @@
+<p><%= link_to "back to project", project_path(Section.find(params[:id]).project) %></p>
+
+<h2>Update Section</h2>
+
+<%= form_with(model: @section, local: true) do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <%= f.label :start_date %>
+  <%= f.date_select :start_date %>
+
+  <%= f.label :end_date %>
+  <%= f.date_select :end_date %>
+
+  <%= f.label :leader %>
+  <%= collection_select(:section, :leader_id, @section.project.members, :id, :username) %>
+
+  <%= f.label :color %>
+  <%= collection_select(:section, :color_id, Color.all, :id, :name) %>
+
+  <%= f.submit "Update section" %>
+<% end %>
