@@ -16,6 +16,10 @@ class SectionsController < ApplicationController
     @section.project = Project.find(params[:project_id])
     authorize @section
     if @section.save
+      SectionTeaming.create(user_id: current_user.id, member_id: current_user.id, section_id: @section.id)
+      if @section.leader != @section.user
+        SectionTeaming.create(user_id: current_user.id, member_id: @section.leader.id, section_id: @section.id)
+      end
       redirect_to @section.project, notice: 'Section successfully created.'
     else
       render :new
