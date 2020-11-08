@@ -24,5 +24,8 @@
   <p>Members: <% card.members.each do |member| %>
       <%= member.username %>
     <% end %></p>
+
+  <p><%= "Category: #{card.category} | Status: #{card.status} | Priority: #{card.priority}" %></p>
+
   <hr>
 <% end %>
