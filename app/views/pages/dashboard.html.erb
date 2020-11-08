@@ -16,7 +16,7 @@
     <% end %>
   <% end %>
 
-  <% if policy(project).edit? %>
+  <% if policy(project).destroy? %>
     <%= link_to project_path(project), method: :delete, data: { confirm: 'Are you sure?' } do %>
       <span> <i class="far fa-trash-alt"></i> Delete project</span>
     <% end %>
