@@ -1,0 +1,23 @@
+<h2>New Section</h2>
+
+<%= form_with(model: @section, url: project_sections_path(params[:project_id]), local: true) do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <%= f.label :start_date %>
+  <%= f.date_select :start_date %>
+
+  <%= f.label :end_date %>
+  <%= f.date_select :end_date %>
+
+  <%= f.label :leader %>
+  <%= collection_select(:section, :leader_id, Project.find(params[:project_id]).members, :id, :username) %>
+
+  <%= f.label :color %>
+  <%= collection_select(:section, :color_id, Color.all, :id, :name) %>
+
+  <%= f.submit "Create section" %>
+<% end %>
