@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :projects, shallow: true do
-    resources :sections, except: :index, shallow: true
+    resources :sections, except: :index, shallow: true do
+      resources :cards, except: :index, shallow: true
+    end
   end
 end
