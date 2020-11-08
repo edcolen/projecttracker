@@ -44,8 +44,8 @@ sleep(1)
 
 color_counter = 0
 5.times do
-  color_names = %w[red green blue pink gray]
-  color_hexcodes = %w[#ff937c #bfff90 #b6f8ff #fbb6ff #d9d9d9]
+  color_names = %w[gray red green blue pink]
+  color_hexcodes = %w[#d9d9d9 #ff937c #bfff90 #b6f8ff #fbb6ff]
 
   color = Color.create!(
     name: color_names[color_counter],
