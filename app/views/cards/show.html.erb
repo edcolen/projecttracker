@@ -1,0 +1,33 @@
+<p><%= link_to "back to section", project_path(Card.find(params[:id]).section) %></p>
+
+<% if policy(@card).privilege_check || policy(@card).section_membership_check %>
+  <%= link_to new_card_comment_path(@card) do %>
+    <span><i class="fas fa-plus"></i> New comment</span>
+  <% end %>
+<% end %>
+
+<% if policy(@card).edit? %>
+  <%= link_to edit_card_path(@card) do %>
+    <span><i class="fas fa-edit"></i> Edit card</span>
+  <% end %>
+<% end %>
+
+<% if policy(@card).destroy? %>
+  <%= link_to card_path(@card), method: :delete, data: { confirm: 'Are you sure?' } do %>
+    <span> <i class="far fa-trash-alt"></i> Delete card</span>
+  <% end %>
+<% end %>
+
+<h1>Card: <%= @card.title %></h1>
+<p><%= @card.description %></p>
+<p><%= "Category: #{@card.category} | Status: #{@card.status} | Priority: #{@card.priority}" %></p>
+<p><%= "Leader: #{@card.leader.username}" if @card.leader %></p>
+<p>Team: <% @card.members.each do |member| %>
+    <%= member.username %>
+  <% end %></p>
+
+<% @card.comments.each do |comment| %>
+  <hr>
+  <p><%= "#{comment.user.username}: #{comment.content}" %></p>
+  <hr>
+<% end %>

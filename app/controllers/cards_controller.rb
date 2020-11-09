@@ -25,18 +25,18 @@ class CardsController < ApplicationController
     end
   end
 
-  # def edit
-  #   authorize @section
-  # end
+  def edit
+    authorize @card
+  end
 
-  # def update
-  #   authorize @section
-  #   if @section.update(section_params)
-  #     redirect_to @section, notice: 'Section successfully edited.'
-  #   else
-  #     render :edit
-  #   end
-  # end
+  def update
+    authorize @card
+    if @card.update(card_params)
+      redirect_to @card, notice: 'Card successfully edited.'
+    else
+      render :edit
+    end
+  end
 
   # def destroy
   #   authorize @section
