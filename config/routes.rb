@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   resources :projects, shallow: true do
     resources :sections, except: :index, shallow: true do
-      resources :cards, except: :index, shallow: true
+      resources :cards, except: :index, shallow: true do
+        resources :comments, except: :index, shallow: true
+      end
     end
   end
 end
