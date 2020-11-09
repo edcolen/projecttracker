@@ -7,18 +7,23 @@ class SectionsController < ApplicationController
 
   def new
     @section = Section.new
-    authorize @section
+    @project = Project.find(params[:project_id])
+    authorize @project, :privilege_check
   end
 
   def create
     @section = Section.new(section_params)
     @section.user = current_user
     @section.project = Project.find(params[:project_id])
-    authorize @section
+    authorize @section.project, :privilege_check
     if @section.save
-      SectionTeaming.create(user_id: current_user.id, member_id: current_user.id, section_id: @section.id)
+      SectionTeaming.create(user_id: current_user.id,
+                            member_id: current_user.id,
+                            section_id: @section.id)
       if @section.leader != @section.user
-        SectionTeaming.create(user_id: current_user.id, member_id: @section.leader.id, section_id: @section.id)
+        SectionTeaming.create(user_id: current_user.id,
+                              member_id: @section.leader.id,
+                              section_id: @section.id)
       end
       redirect_to @section.project, notice: 'Section successfully created.'
     else
@@ -49,7 +54,12 @@ class SectionsController < ApplicationController
   private
 
   def section_params
-    params.require(:section).permit(:title, :description, :start_date, :end_date, :leader_id, :color_id)
+    params.require(:section).permit(:title,
+                                    :description,
+                                    :start_date,
+                                    :end_date,
+                                    :leader_id,
+                                    :color_id)
   end
 
   def set_section
