@@ -25,7 +25,7 @@ Requirements
 
 - New projects are created with new section named "general"
 - New projects are created with an empty description
-- Project creator is admin as default
+- Project creator is admin and member as default
 - A project must have: title, description (optional), user_id, start_date (optional), end_date(optional), admins, members
 
 Use
@@ -39,7 +39,7 @@ Use
 - Ability to invite users to collaborate (as admin)
 - Ability to assign roles to project members (as admin)
 - Ability to unassign roles to project members (as admin)
-- Ability to remove self from a project
+- Ability to remove self from a project (also removes privileges)
 - Ability to remove a member from a project (as admin)
 - Ability to move a card between sections (as admin)
 
