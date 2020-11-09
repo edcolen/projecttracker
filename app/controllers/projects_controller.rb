@@ -15,8 +15,8 @@ class ProjectsController < ApplicationController
     @project.user = current_user
     authorize @project
     if @project.save
-      Collaboration.create(user_id: current_user.id, member_id: current_user.id, project_id: @project.id)
-      Privilege.create(user_id: current_user.id, admin_id: current_user.id, project_id: @project.id)
+      add_user_as_member
+      add_user_as_admin
       redirect_to @project, notice: 'Project successfully created.'
     else
       render :new
@@ -45,11 +45,26 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:title, :description, :start_date, :end_date)
+    params.require(:project).permit(:title,
+                                    :description,
+                                    :start_date,
+                                    :end_date)
   end
 
   def set_project
     @project = Project.find_by(id: params[:id])
     redirect_to dashboard_path, notice: 'Project not found.' if @project.nil?
+  end
+
+  def add_user_as_member
+    Collaboration.create(user_id: current_user.id,
+                         member_id: current_user.id,
+                         project_id: @project.id)
+  end
+
+  def add_user_as_admin
+    Privilege.create(user_id: current_user.id,
+                     admin_id: current_user.id,
+                     project_id: @project.id)
   end
 end
