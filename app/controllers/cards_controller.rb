@@ -1,2 +1,78 @@
 class CardsController < ApplicationController
+  before_action :set_card, only: %i[show edit update destroy]
+
+  def show
+    authorize @card
+  end
+
+  def new
+    @card = Card.new
+    @section = Section.find(params[:section_id])
+    authorize @section, :section_membership_check
+  end
+
+  def create
+    @card = Card.new(card_params)
+    @card.user = current_user
+    @card.section = Section.find(params[:section_id])
+    authorize @card.section, :section_membership_check
+    if @card.save
+      add_user_as_member
+      add_leader_as_member if @card.leader != @card.user
+      redirect_to @card.section, notice: 'Card successfully created.'
+    else
+      render :new
+    end
+  end
+
+  # def edit
+  #   authorize @section
+  # end
+
+  # def update
+  #   authorize @section
+  #   if @section.update(section_params)
+  #     redirect_to @section, notice: 'Section successfully edited.'
+  #   else
+  #     render :edit
+  #   end
+  # end
+
+  # def destroy
+  #   authorize @section
+  #   project = @section.project
+  #   @section.destroy
+  #   redirect_to project_path(project), notice: 'Section was deleted.'
+  # end
+
+  private
+
+  def card_params
+    params.require(:card).permit(:title,
+                                 :description,
+                                 :start_date,
+                                 :end_date,
+                                 :leader_id,
+                                 :color_id,
+                                 :priority,
+                                 :status,
+                                 :category)
+  end
+
+  def set_card
+    @card = Card.find_by(id: params[:id])
+    redirect_to dashboard_path, notice: 'Card not found.' if @card.nil?
+  end
+
+  def add_user_as_member
+    CardTeaming.create(user_id: current_user.id,
+                       member_id: current_user.id,
+                       card_id: @card.id)
+  end
+
+  def add_leader_as_member
+    CardTeaming.create(user_id: current_user.id,
+                       member_id: @card.leader.id,
+                       card_id: @card.id)
+  end
 end
