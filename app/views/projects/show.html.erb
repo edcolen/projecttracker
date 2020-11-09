@@ -4,8 +4,23 @@
   <span><i class="fas fa-plus"></i> New section</span>
 <% end %>
 
+<% if policy(@project).edit? %>
+  <%= link_to edit_project_path(@project) do %>
+    <span><i class="fas fa-edit"></i> Edit project</span>
+  <% end %>
+<% end %>
+
+<% if policy(@project).destroy? %>
+  <%= link_to project_path(@project), method: :delete, data: { confirm: 'Are you sure?' } do %>
+    <span> <i class="far fa-trash-alt"></i> Delete project</span>
+  <% end %>
+<% end %>
+
 <h1>Project: <%= @project.title %></h1>
 <p><%= @project.description %></p>
+<p>Members: <% @project.members.each do |member| %>
+    <%= member.username %>
+  <% end %></p>
 
 <% @project.sections.each do |section| %>
   <br>
