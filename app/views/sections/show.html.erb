@@ -19,7 +19,7 @@
 <h1>Section: <%= @section.title %></h1>
 <p><%= @section.description %></p>
 
-<p>Members: <% @section.members.each do |member| %>
+<p>Team: <% @section.members.each do |member| %>
     <%= member.username %>
   <% end %></p>
 
@@ -31,7 +31,7 @@
   <p><%= card.description %></p>
   <p><%= "Leader: #{card.leader.username}" if card.leader %></p>
 
-  <p>Members: <% card.members.each do |member| %>
+  <p>Team: <% card.members.each do |member| %>
       <%= member.username %>
     <% end %></p>
 
