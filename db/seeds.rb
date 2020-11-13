@@ -136,6 +136,7 @@ User.all.each do |user|
   collaboration_user_id = User.first.id
   collaboration_member_id = user.id
   collaboration_role = %w[developer designer UX].sample
+  next if Project.first.members.include?(user)
 
   collaboration = Collaboration.create!(
     user_id: collaboration_user_id,
@@ -171,6 +172,7 @@ sleep(1)
   )
 
   puts "Section #{section.title} created"
+  next if section.members.include?(User.find(section_user_id))
 
   SectionTeaming.create!(
     user_id: section_user_id,
@@ -264,6 +266,7 @@ Project.first.sections.each do |section|
       card_teaming_card_id = section.cards.sample.id
       card_teaming_user_id = Card.find(card_teaming_card_id).leader.id
       card_teaming_member_id = member.id
+      next if Card.find(card_teaming_user_id).members.include?(User.find(card_teaming_member_id))
 
       card_teaming = CardTeaming.create!(
         user_id: card_teaming_user_id,
