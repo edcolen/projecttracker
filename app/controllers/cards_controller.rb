@@ -18,7 +18,9 @@ class CardsController < ApplicationController
     authorize @card.section, :new_card
     if @card.save
       add_user_as_member
+      add_user_as_section_member unless @card.section.members.include?(current_user)
       add_leader_as_member if @card.leader != @card.user
+      add_leader_as_section_member unless @card.section.members.include?(@card.leader)
       redirect_to @card.section, notice: 'Card successfully created.'
     else
       render :new
@@ -74,5 +76,17 @@ class CardsController < ApplicationController
     CardTeaming.create(user_id: current_user.id,
                        member_id: @card.leader.id,
                        card_id: @card.id)
+  end
+
+  def add_user_as_section_member
+    SectionTeaming.create(user_id: current_user.id,
+                          member_id: current_user.id,
+                          section_id: @card.section.id)
+  end
+
+  def add_leader_as_section_member
+    SectionTeaming.create(user_id: current_user.id,
+                          member_id: @card.leader.id,
+                          section_id: @card.section.id)
   end
 end
