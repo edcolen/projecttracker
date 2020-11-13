@@ -19,6 +19,10 @@
 <h1>Section: <%= @section.title %></h1>
 <p><%= @section.description %></p>
 
+<p>Members: <% @section.members.each do |member| %>
+    <%= member.username %>
+  <% end %></p>
+
 <% @section.cards.each do |card| %>
   <br>
   <hr>
