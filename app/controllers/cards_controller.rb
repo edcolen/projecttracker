@@ -8,14 +8,14 @@ class CardsController < ApplicationController
   def new
     @card = Card.new
     @section = Section.find(params[:section_id])
-    authorize @section, :section_membership_check
+    authorize @section, :new_card
   end
 
   def create
     @card = Card.new(card_params)
     @card.user = current_user
     @card.section = Section.find(params[:section_id])
-    authorize @card.section, :section_membership_check
+    authorize @card.section, :new_card
     if @card.save
       add_user_as_member
       add_leader_as_member if @card.leader != @card.user

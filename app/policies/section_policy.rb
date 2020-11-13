@@ -21,6 +21,10 @@ class SectionPolicy < ApplicationPolicy
     privilege_check || section_leadership_check
   end
 
+  def new_card
+    section_membership_check || privilege_check
+  end
+
   def privilege_check
     privilege = Privilege.where(admin_id: user.id, project_id: record.project.id)
     privilege.empty? ? false : true
