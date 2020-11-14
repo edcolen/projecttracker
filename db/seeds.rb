@@ -197,6 +197,7 @@ Project.first.members.each do |user|
     section_teaming_section_id = Section.all.sample.id
     section_teaming_user_id = Section.find(section_teaming_section_id).leader.id
     section_teaming_member_id = user.id
+    next if Section.find(section_teaming_section_id).members.include?(User.find(section_teaming_member_id))
 
     section_teaming = SectionTeaming.create!(
       user_id: section_teaming_user_id,
@@ -215,6 +216,7 @@ Section.all.each do |section|
     section_tagging_user_id = section.members.sample.id
     section_tagging_section_id = section.id
     section_tagging_tag_id = tag.id
+    next if Section.find(section_tagging_section_id).tags.include?(Tag.find(section_tagging_tag_id))
 
     section_tagging = SectionTagging.create!(
       user_id: section_tagging_user_id,
@@ -273,7 +275,7 @@ Project.first.sections.each do |section|
       card_teaming_card_id = section.cards.sample.id
       card_teaming_user_id = Card.find(card_teaming_card_id).leader.id
       card_teaming_member_id = member.id
-      next if Card.find(card_teaming_user_id).members.include?(User.find(card_teaming_member_id))
+      next if Card.find(card_teaming_card_id).members.include?(User.find(card_teaming_member_id))
 
       card_teaming = CardTeaming.create!(
         user_id: card_teaming_user_id,
@@ -293,6 +295,7 @@ Card.all.each do |card|
     card_tagging_user_id = card.members.sample.id
     card_tagging_card_id = card.id
     card_tagging_tag_id = tag.id
+    next if Card.find(card_tagging_card_id).tags.include?(Tag.find(card_tagging_tag_id))
 
     card_tagging = CardTagging.create!(
       user_id: card_tagging_user_id,
@@ -330,6 +333,7 @@ Comment.all.each do |comment|
   rand(1..4).times do
     comment_tag_tag_id = comment_tags.sample.id
     comment_tag_comment_id = comment.id
+    next if Comment.find(comment_tag_comment_id).tags.include?(Tag.find(comment_tag_tag_id))
 
     CommentTagging.create!(
       tag_id: comment_tag_tag_id,
