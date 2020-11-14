@@ -98,6 +98,13 @@ sleep(1)
     start_date: project_start_date,
     end_date: project_end_date
   )
+
+  Collaboration.create!(
+    user_id: project.user.id,
+    member_id: User.first.id,
+    project_id: project.id,
+    role: "dev"
+  )
   puts "Project #{project.title} created"
 end
 
