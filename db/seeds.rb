@@ -157,7 +157,7 @@ end
 puts 'Creating main project sections...'
 sleep(1)
 
-5.times do
+6.times do
   section_user_id = Project.first.privileges.sample.user.id
   section_project_id = Project.first.id
   section_color_id = Color.all.sample.id
@@ -193,7 +193,7 @@ puts 'Creating sections teamings for main project...'
 sleep(1)
 
 Project.first.members.each do |user|
-  2.times do
+  3.times do
     section_teaming_section_id = Section.all.sample.id
     section_teaming_user_id = Section.find(section_teaming_section_id).leader.id
     section_teaming_member_id = user.id
@@ -261,7 +261,7 @@ sleep(1)
     member_id: card_user_id,
     card_id: card.id
   )
-  puts "Card leader #{card.leader.username} assigned as member"
+  puts "#{card.leader.username} assigned as leader"
 end
 
 puts 'Creating cards teamings for main project...'
@@ -269,7 +269,7 @@ sleep(1)
 
 Project.first.sections.each do |section|
   section.members.each do |member|
-    rand(1..3).times do
+    rand(3..5).times do
       card_teaming_card_id = section.cards.sample.id
       card_teaming_user_id = Card.find(card_teaming_card_id).leader.id
       card_teaming_member_id = member.id
