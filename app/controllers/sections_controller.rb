@@ -17,14 +17,8 @@ class SectionsController < ApplicationController
     @section.project = Project.find(params[:project_id])
     authorize @section.project, :privilege_check
     if @section.save
-      SectionTeaming.create(user_id: current_user.id,
-                            member_id: current_user.id,
-                            section_id: @section.id)
-      if @section.leader != @section.user
-        SectionTeaming.create(user_id: current_user.id,
-                              member_id: @section.leader.id,
-                              section_id: @section.id)
-      end
+      add_user_as_section_member unless @section.members.include?(current_user)
+      add_leader_as_section_member unless @section.leader == @section.user && @section.members.include?(@section.leader)
       redirect_to @section.project, notice: 'Section successfully created.'
     else
       render :new
@@ -65,5 +59,17 @@ class SectionsController < ApplicationController
   def set_section
     @section = Section.find_by(id: params[:id])
     redirect_to dashboard_path, notice: 'Section not found.' if @section.nil?
+  end
+
+  def add_user_as_section_member
+    SectionTeaming.create(user_id: current_user.id,
+                          member_id: current_user.id,
+                          section_id: @section.id)
+  end
+
+  def add_leader_as_section_member
+    SectionTeaming.create(user_id: current_user.id,
+                          member_id: @section.leader.id,
+                          section_id: @section.id)
   end
 end
