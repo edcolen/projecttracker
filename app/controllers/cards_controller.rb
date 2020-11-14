@@ -17,9 +17,9 @@ class CardsController < ApplicationController
     @card.section = Section.find(params[:section_id])
     authorize @card.section, :new_card
     if @card.save
-      add_user_as_member
+      add_user_as_member unless @card.members.include?(current_user)
       add_user_as_section_member unless @card.section.members.include?(current_user)
-      add_leader_as_member if @card.leader != @card.user
+      add_leader_as_member unless @card.leader == @card.user && @card.members.include?(@card.leader)
       add_leader_as_section_member unless @card.section.members.include?(@card.leader)
       redirect_to @card.section, notice: 'Card successfully created.'
     else
