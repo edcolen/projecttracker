@@ -1,9 +1,5 @@
 <p><%= link_to "back to project", project_path(Section.find(params[:id]).project) %></p>
 
-<%= link_to new_section_card_path(@section) do %>
-  <span><i class="fas fa-plus"></i> New card</span>
-<% end %>
-
 <% if policy(@section).edit? %>
   <%= link_to edit_section_path(@section) do %>
     <span><i class="fas fa-edit"></i> Edit section</span>
@@ -23,8 +19,13 @@
     <%= member.username %>
   <% end %></p>
 
+<% if policy(@section).new_card %>
+  <%= link_to new_section_card_path(@section) do %>
+    <span><i class="fas fa-plus"></i> New card</span>
+  <% end %>
+<% end %>
+
 <% @section.cards.each do |card| %>
-  <br>
   <hr>
 
   <h4 style="color: <%= card.color.name %>;"><strong><%= link_to card.title, card_path(card) %></strong></h4>
@@ -36,6 +37,4 @@
     <% end %></p>
 
   <p><%= "Category: #{card.category} | Status: #{card.status} | Priority: #{card.priority}" %></p>
-
-  <hr>
 <% end %>

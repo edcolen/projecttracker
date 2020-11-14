@@ -1,8 +1,10 @@
 <p><%= link_to "back to dashboard", dashboard_path %></p>
 
-<%= link_to new_project_section_path(@project) do %>
-  <span><i class="fas fa-plus"></i> New section</span>
-<% end %>
+<% if policy(@project).privilege_check %>
+  <%= link_to new_project_section_path(@project) do %>
+    <span><i class="fas fa-plus"></i> New section</span>
+  <% end %>
+<% end%>
 
 <% if policy(@project).edit? %>
   <%= link_to edit_project_path(@project) do %>
@@ -23,10 +25,8 @@
   <% end %></p>
 
 <% @project.sections.each do |section| %>
-  <br>
   <hr>
-
-  <h4 style="color: <%= section.color.name %>;"><strong><%= link_to section.title, section_path(section) %></strong></h4>
+  <h4>Section: <strong><%= link_to section.title, section_path(section) %></strong></h4>
   <p><%= section.description %></p>
   <p><%= "Leader: #{section.leader.username}" if section.leader %></p>
 
@@ -35,5 +35,4 @@
     <% end %></p>
 
   <p>Cards: <%= section.cards.count %></p>
-  <hr>
 <% end %>
