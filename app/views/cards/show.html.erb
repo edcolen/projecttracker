@@ -1,4 +1,4 @@
-<p><%= link_to "back to section", project_path(Card.find(params[:id]).section) %></p>
+<p><%= link_to "back to section", section_path(Card.find(params[:id]).section) %></p>
 
 <% if policy(@card).privilege_check || policy(@card).section_membership_check %>
   <%= link_to new_card_comment_path(@card) do %>
