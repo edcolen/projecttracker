@@ -40,12 +40,12 @@ class CardsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   authorize @section
-  #   project = @section.project
-  #   @section.destroy
-  #   redirect_to project_path(project), notice: 'Section was deleted.'
-  # end
+  def destroy
+    authorize @card
+    section = @card.section
+    @card.destroy
+    redirect_to section_path(section), notice: 'card was deleted.'
+  end
 
   private
 
