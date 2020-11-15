@@ -4,6 +4,15 @@
   <%= link_to destroy_user_session_path, method: :delete do %>
     <i class="fas fa-sign-out-alt"></i> Logout
   <% end %>
+
+  <!---------- Edit profile ---------->
+  <%= link_to edit_user_registration_path do %>
+    <span><i class="fas fa-edit"></i> Edit profile</span>
+  <% end %>
+  <!---------- Delete account ---------->
+  <%= link_to delete_account_path, data: { confirm: 'Are you sure?' } do %>
+    <i class="fas fa-sign-out-alt"></i> Delete account
+  <% end %>
 <% else %>
   <!---------- Login ---------->
   <%= link_to new_user_session_path, class: "btn-login colors" do %>
