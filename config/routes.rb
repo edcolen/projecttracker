@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
   get '/dashboard', to: 'pages#dashboard', as: 'dashboard'
-  get '/delete_account', to: 'users#delete_account', as: 'delete_account'
+  get 'users/delete_account', to: 'users#delete_account', as: 'delete_account'
 
   devise_for :users
 
