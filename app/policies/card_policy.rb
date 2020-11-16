@@ -17,9 +17,9 @@ class CardPolicy < ApplicationPolicy
     privilege_check || section_leadership_check || card_leadership_check
   end
 
-  # def destroy?
-  #   privilege_check
-  # end
+  def destroy?
+    privilege_check || section_leadership_check || card_leadership_check
+  end
 
   def privilege_check
     privilege = Privilege.where(admin_id: user.id, project_id: record.section.project.id)
