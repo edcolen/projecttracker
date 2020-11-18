@@ -98,10 +98,12 @@ ActiveRecord::Schema.define(version: 2020_10_20_225755) do
   end
 
   create_table "comment_taggings", force: :cascade do |t|
+    t.bigint "card_id"
     t.bigint "comment_id"
     t.bigint "tag_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["card_id"], name: "index_comment_taggings_on_card_id"
     t.index ["comment_id"], name: "index_comment_taggings_on_comment_id"
     t.index ["tag_id"], name: "index_comment_taggings_on_tag_id"
   end
@@ -230,6 +232,7 @@ ActiveRecord::Schema.define(version: 2020_10_20_225755) do
   add_foreign_key "collaborations", "projects"
   add_foreign_key "collaborations", "users"
   add_foreign_key "collaborations", "users", column: "member_id"
+  add_foreign_key "comment_taggings", "cards"
   add_foreign_key "comment_taggings", "comments"
   add_foreign_key "comment_taggings", "tags"
   add_foreign_key "comments", "cards"
