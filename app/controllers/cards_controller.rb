@@ -44,7 +44,7 @@ class CardsController < ApplicationController
     authorize @card
     section = @card.section
     @card.destroy
-    redirect_to section_path(section), notice: 'card was deleted.'
+    redirect_to section_path(section), notice: 'Card was deleted.'
   end
 
   private
