@@ -333,9 +333,11 @@ Comment.all.each do |comment|
   rand(1..4).times do
     comment_tag_tag_id = comment_tags.sample.id
     comment_tag_comment_id = comment.id
+    comment_tags_card_id = comment.card.id
     next if Comment.find(comment_tag_comment_id).tags.include?(Tag.find(comment_tag_tag_id))
 
     CommentTagging.create!(
+      card_id: comment_tags_card_id,
       tag_id: comment_tag_tag_id,
       comment_id: comment_tag_comment_id
     )
