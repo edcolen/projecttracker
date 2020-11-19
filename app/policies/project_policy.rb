@@ -6,7 +6,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def show?
-    record.members.include?(user)
+    membership_check
   end
 
   def new?
@@ -32,5 +32,9 @@ class ProjectPolicy < ApplicationPolicy
   def privilege_check
     privilege = Privilege.where(admin_id: user.id, project_id: record.id)
     privilege.empty? ? false : true
+  end
+
+  def membership_check
+    record.members.include?(user) ? true : false
   end
 end
