@@ -10,7 +10,7 @@ class Card < ApplicationRecord
   has_many :card_taggings, dependent: :destroy
   has_many :tags, through: :card_taggings, dependent: :destroy
   has_many :comment_taggings, dependent: :destroy
-  has_many :comment_tags, through: :comment_taggings, dependent: :destroy
+  has_many :comment_tags, through: :comment_taggings, source: :tag, dependent: :destroy
 
   # Validations
   validates :title, :status, presence: true
