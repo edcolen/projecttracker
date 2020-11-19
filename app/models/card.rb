@@ -3,6 +3,7 @@ class Card < ApplicationRecord
   belongs_to :leader, class_name: 'User', optional: true
   belongs_to :section
   belongs_to :color
+  delegate :project, to: :section
 
   has_many :comments, dependent: :destroy
   has_many :card_teamings, dependent: :destroy
