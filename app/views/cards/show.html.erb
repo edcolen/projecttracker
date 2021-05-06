@@ -26,8 +26,19 @@
     <%= member.username %>
   <% end %></p>
 
+<%= render "comments/new" %>
+
 <% @card.comments.each do |comment| %>
   <hr>
-  <p><%= "#{comment.user.username}: #{comment.content}" %></p>
+  <p><%= "#{comment.user.username}: #{comment.content}" %>
+    <% if policy(comment).edit?  %>
+      <%= link_to edit_comment_path do %>
+        <i class="far fa-edit"></i>
+      <% end %>
+    <% end %>
+  </p>
   <hr>
 <% end %>
+
+
+<%# link_to render(:partial => 'shared/logo'), root_url %>

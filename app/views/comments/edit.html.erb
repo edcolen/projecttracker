@@ -1,0 +1,5 @@
+<%= form_with(model: @comment, url: card_comments_path(params[:id]), local: true) do |f| %>
+  <%= f.text_field :content %>
+
+  <%= f.submit "Comment" %>
+<% end %>

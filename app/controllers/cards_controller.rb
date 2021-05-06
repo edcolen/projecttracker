@@ -2,6 +2,7 @@ class CardsController < ApplicationController
   before_action :set_card, only: %i[show edit update destroy]
 
   def show
+    @comment = Comment.new
     authorize @card
   end
 
